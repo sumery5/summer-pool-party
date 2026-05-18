@@ -187,7 +187,7 @@ const PRICE       = 27;
 const PAYPAL_ME   = 'zayfrog';
 const MAX_QTY     = 10;
 // Incolla qui l'URL del tuo Google Apps Script (vedi istruzioni)
-const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
+const SCRIPT_URL  = 'INCOLLA_QUI_URL_APPS_SCRIPT';
 // ─────────────────────────────────────────────
 
 let qty = 1;
@@ -304,8 +304,12 @@ document.getElementById('regForm').addEventListener('submit', async e => {
   if(!validateAll()) return;
 
   const data = collectData();
+
+  // Apri PayPal SUBITO dentro l'evento click — prima di qualsiasi async
+  window.open('https://paypal.me/'+PAYPAL_ME+'/'+(qty*PRICE)+'EUR','_blank','noopener,noreferrer');
+
   submitBtn.disabled = true;
-  setStatus('sending', '⏳ Invio in corso...');
+  setStatus('sending', '⏳ Registrazione in corso...');
 
   try {
     await fetch(SCRIPT_URL, {
@@ -314,12 +318,7 @@ document.getElementById('regForm').addEventListener('submit', async e => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    // no-cors → non possiamo leggere la risposta, assumiamo successo
-    setStatus('success',
-      '✅ <strong>Richiesta inviata!</strong><br>Controlla la tua email — riceverai una conferma a breve.<br><br>Ora verrai reindirizzato su PayPal...');
-    setTimeout(()=>{
-      window.open('https://paypal.me/'+PAYPAL_ME+'/'+(qty*PRICE)+'EUR','_blank','noopener,noreferrer');
-    }, 2000);
+    setStatus('success', '✅ <strong>Registrazione completata!</strong><br>Controlla la tua email — riceverai una conferma a breve.');
   } catch(err){
     setStatus('error', '❌ Errore di rete. Riprova o contattaci su Instagram.');
     submitBtn.disabled = false;
