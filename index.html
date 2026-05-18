@@ -306,7 +306,7 @@ document.getElementById('regForm').addEventListener('submit', async e => {
   const data = collectData();
 
   // Apri PayPal SUBITO dentro l'evento click — prima di qualsiasi async
-  window.open('https://paypal.me/'+PAYPAL_ME+'/'+(qty*PRICE)+'EUR','_blank','noopener,noreferrer');
+  window.open('https://www.paypal.com/paypalme/'+PAYPAL_ME+'/'+(qty*PRICE),'_blank','noopener,noreferrer');
 
   submitBtn.disabled = true;
   setStatus('sending', '⏳ Registrazione in corso...');
