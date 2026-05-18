@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Pool Party – Iscrizione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lilita+One&family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+:root{
+  --orange:#ff6b1a;--cyan:#00d4ff;
+  --card-bg:rgba(6,6,10,0.83);
+  --border-orange:rgba(255,107,26,0.32);
+  --error:#ff4f7b;
+  --font-display:'Black Han Sans','Impact',sans-serif;
+  --font-vibes:'Lilita One','Georgia',serif;
+  --font-serif:'Playfair Display','Georgia',serif;
+  --font-body:'Inter',sans-serif;
+  --transition:180ms cubic-bezier(0.16,1,0.3,1);
+}
+body{
+  min-height:100dvh;font-family:var(--font-body);color:#fff;
+  background:#080810;display:flex;flex-direction:column;
+  align-items:center;padding:0 0 60px;position:relative;
+}
+.bg-image{
+  position:fixed;inset:0;
+  background-image:url('generated-image-3.jpg');
+  background-size:cover;background-position:center top;
+  z-index:0;filter:brightness(0.25) saturate(1.1);
+}
+.bg-overlay{
+  position:fixed;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.82) 100%);
+  z-index:1;
+}
+.page{
+  position:relative;z-index:2;width:100%;max-width:560px;
+  padding:0 16px;display:flex;flex-direction:column;align-items:center;
+}
+
+/* HERO */
+.hero{width:100%;text-align:center;padding:36px 0 16px;}
+.logo-img{display:block;margin:0 auto 6px;max-height:60px;width:auto;}
+.presents{font-size:11px;letter-spacing:.22em;font-weight:300;color:rgba(255,255,255,0.5);margin-bottom:14px;display:block;}
+.title-summer{
+  font-family:var(--font-display);font-size:clamp(2.8rem,11vw,5rem);
+  line-height:.9;letter-spacing:.02em;display:block;color:#ff7820;
+  -webkit-text-stroke:2px #ff4400;
+  text-shadow:0 0 14px rgba(255,100,20,0.9),0 0 36px rgba(255,60,0,0.5),3px 3px 0 rgba(160,40,0,0.5);
+}
+.title-pool{
+  font-family:var(--font-display);font-size:clamp(2.2rem,9vw,4.2rem);
+  line-height:.9;letter-spacing:.02em;display:block;color:rgba(0,20,35,0.2);
+  -webkit-text-stroke:2px #00d4ff;
+  text-shadow:0 0 12px rgba(0,212,255,1),0 0 35px rgba(0,180,255,0.5),0 0 70px rgba(0,140,255,0.22);
+  margin-bottom:6px;
+}
+.title-vibes{
+  font-family:var(--font-vibes);font-size:clamp(1.2rem,5vw,2.2rem);
+  letter-spacing:.03em;display:block;color:#fff;
+  text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,0 4px 10px rgba(0,0,0,0.7);
+  margin-bottom:22px;
+}
+.event-date{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.6rem,7vw,2.8rem);color:#fff;letter-spacing:.06em;line-height:1;}
+.event-location{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;gap:5px;margin-top:5px;}
+.divider-line{width:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);margin:12px auto 13px;}
+.price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
+.price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
+
+/* FORM CARD */
+.form-card{
+  width:100%;margin-top:22px;background:var(--card-bg);
+  border:1px solid var(--border-orange);border-radius:20px;padding:28px 26px;
+  backdrop-filter:blur(24px);
+  box-shadow:0 8px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.form-heading{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#fff;text-align:center;margin-bottom:22px;}
+.form-grid{display:flex;flex-direction:column;gap:14px;}
+
+/* Sezione partecipante */
+.participant-section{
+  display:flex;flex-direction:column;gap:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:16px 14px;
+  background:rgba(255,255,255,0.025);
+  position:relative;
+}
+.participant-section.primary{border-color:rgba(255,107,26,0.25);background:rgba(255,107,26,0.04);}
+
+.participant-label{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.38);margin-bottom:2px;
+}
+.participant-section.primary .participant-label{color:rgba(255,107,26,0.7);}
+
+/* Partecipanti aggiuntivi: animazione entrata */
+.participant-extra{
+  animation:slideIn .3s cubic-bezier(0.16,1,0.3,1);
+  overflow:hidden;
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(-8px);max-height:0;}
+  to{opacity:1;transform:translateY(0);max-height:200px;}
+}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.field{display:flex;flex-direction:column;gap:4px;}
+.field label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
+.field input{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;width:100%;
+  transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);
+}
+.field input:focus{outline:none;border-color:var(--orange);background:rgba(255,107,26,0.06);box-shadow:0 0 0 3px rgba(255,107,26,0.14);}
+.field input::placeholder{color:rgba(255,255,255,0.18);}
+.field-error{font-size:11px;color:var(--error);display:none;margin-top:2px;}
+.field.has-error input{border-color:var(--error);}
+.field.has-error .field-error{display:block;}
+
+/* Email (solo pagante) */
+.field-email-wrap{display:flex;flex-direction:column;gap:4px;}
+.field-email-wrap label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
+.field-email-wrap input{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;width:100%;
+  transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);
+}
+.field-email-wrap input:focus{outline:none;border-color:var(--orange);background:rgba(255,107,26,0.06);box-shadow:0 0 0 3px rgba(255,107,26,0.14);}
+.field-email-wrap input::placeholder{color:rgba(255,255,255,0.18);}
+.field-error-email{font-size:11px;color:var(--error);display:none;margin-top:2px;}
+.email-has-error input{border-color:var(--error);}
+.email-has-error .field-error-email{display:block;}
+
+/* Qty */
+.qty-wrap{display:flex;flex-direction:column;gap:5px;}
+.qty-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.qty-control{display:flex;align-items:center;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
+.qty-btn{
+  width:46px;height:46px;border:none;background:none;cursor:pointer;
+  font-size:1.4rem;font-weight:300;color:rgba(255,255,255,0.4);
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--transition),color var(--transition);flex-shrink:0;
+}
+.qty-btn:hover{background:rgba(255,107,26,0.14);color:var(--orange);}
+.qty-btn:disabled{opacity:.22;cursor:not-allowed;}
+.qty-display{flex:1;text-align:center;font-size:17px;font-weight:600;border-left:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);padding:9px 0;}
+
+.sep{height:1px;background:rgba(255,255,255,0.07);margin:2px 0;}
+.total-box{display:flex;justify-content:space-between;align-items:center;background:rgba(255,107,26,0.07);border:1px solid rgba(255,107,26,0.22);border-radius:12px;padding:12px 16px;}
+.total-label{font-size:13px;color:rgba(255,255,255,0.48);font-weight:500;}
+.total-amount{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.6rem,5.5vw,2.3rem);color:var(--orange);transition:transform 150ms cubic-bezier(0.16,1,0.3,1);filter:drop-shadow(0 0 7px rgba(255,107,26,0.45));}
+
+.btn-paypal{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  background:linear-gradient(135deg,#ff6b1a 0%,#e03d00 100%);
+  color:#fff;border:none;border-radius:12px;padding:15px 24px;
+  font-family:var(--font-serif);font-weight:700;font-size:clamp(1rem,3.2vw,1.3rem);
+  letter-spacing:.04em;cursor:pointer;margin-top:4px;text-decoration:none;
+  box-shadow:0 0 28px rgba(255,107,26,0.38),0 0 60px rgba(255,80,0,0.14);
+  transition:filter var(--transition),transform var(--transition),box-shadow var(--transition);
+}
+.btn-paypal:hover{filter:brightness(1.1);box-shadow:0 0 42px rgba(255,107,26,0.55);transform:translateY(-1px);}
+.btn-paypal:active{transform:scale(0.98);}
+.form-note{text-align:center;font-size:11px;color:rgba(255,255,255,0.25);margin-top:12px;line-height:1.6;}
+.form-note a{color:var(--cyan);text-decoration:none;}
+.form-note a:hover{text-decoration:underline;}
+
+#extraParticipants{display:flex;flex-direction:column;gap:14px;}
+
+.site-footer{position:relative;z-index:2;margin-top:24px;font-size:10px;color:rgba(255,255,255,0.16);text-align:center;letter-spacing:.07em;text-transform:uppercase;}
+@media(max-width:420px){
+  .form-card{padding:20px 14px;}
+  .field-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="bg-image"></div>
+<div class="bg-overlay"></div>
+
+<div class="page">
+  <header class="hero">
+    <img src="logo.png" alt="Logo" class="logo-img">
+    <span class="presents">presents</span>
+    <span class="title-summer">SUMMER</span>
+    <span class="title-pool">POOL PARTY</span>
+    <span class="title-vibes">Coachella Vibes</span>
+    <div class="event-date">26 GIUGNO</div>
+    <div class="event-location">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Secret Location
+    </div>
+    <div class="divider-line"></div>
+    <div class="price-main">Super Early Bird: €27</div>
+    <div class="price-sub">Offerta a numero limitato — dopo €32</div>
+  </header>
+
+  <div class="form-card">
+    <div class="form-heading">Prenota il tuo posto</div>
+    <form id="regForm" class="form-grid" novalidate>
+
+      <!-- Qty -->
+      <div class="qty-wrap">
+        <span class="qty-label">Numero biglietti</span>
+        <div class="qty-control" role="group">
+          <button type="button" class="qty-btn" id="qtyMinus" aria-label="Riduci">−</button>
+          <span class="qty-display" id="qtyDisplay" aria-live="polite">1</span>
+          <button type="button" class="qty-btn" id="qtyPlus" aria-label="Aumenta">+</button>
+        </div>
+      </div>
+
+      <!-- Partecipante 1 (pagante) -->
+      <div class="participant-section primary">
+        <div class="participant-label">Biglietto 1 — Intestatario pagamento</div>
+        <div class="field-row">
+          <div class="field" id="field-nome">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Mario" autocomplete="given-name">
+            <span class="field-error">Obbligatorio</span>
+          </div>
+          <div class="field" id="field-cognome">
+            <label for="cognome">Cognome</label>
+            <input type="text" id="cognome" placeholder="Rossi" autocomplete="family-name">
+            <span class="field-error">Obbligatorio</span>
+          </div>
+        </div>
+        <div class="field-email-wrap" id="field-email-wrap">
+          <label for="email">Email di contatto</label>
+          <input type="email" id="email" placeholder="mario@email.com" autocomplete="email">
+          <span class="field-error-email">Email non valida</span>
+        </div>
+      </div>
+
+      <!-- Partecipanti aggiuntivi (generati da JS) -->
+      <div id="extraParticipants"></div>
+
+      <div class="sep"></div>
+      <div class="total-box">
+        <span class="total-label">Totale da pagare</span>
+        <span class="total-amount" id="totalAmount">27,00 €</span>
+      </div>
+      <a href="#" id="paypalBtn" class="btn-paypal" target="_blank" rel="noopener noreferrer">
+        Paga con PayPal
+      </a>
+      <p class="form-note">
+        Verrai reindirizzato su PayPal per il pagamento sicuro.<br>
+        Info: <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">@w_vesc</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<footer class="site-footer">© 2025 W-VE∫C — All rights reserved</footer>
+
+<script>
+const PRICE=27, PAYPAL_ME='zayfrog', MAX_QTY=10;
+let qty=1;
+
+const qtyDisplay=document.getElementById('qtyDisplay');
+const totalAmount=document.getElementById('totalAmount');
+const qtyMinus=document.getElementById('qtyMinus');
+const qtyPlus=document.getElementById('qtyPlus');
+const paypalBtn=document.getElementById('paypalBtn');
+const extraContainer=document.getElementById('extraParticipants');
+
+function fmt(n){return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' €';}
+
+function buildExtraParticipant(n){
+  const div=document.createElement('div');
+  div.className='participant-section participant-extra';
+  div.id='participant-'+n;
+  div.innerHTML=`
+    <div class="participant-label">Biglietto ${n}</div>
+    <div class="field-row">
+      <div class="field" id="field-nome-${n}">
+        <label for="nome-${n}">Nome</label>
+        <input type="text" id="nome-${n}" placeholder="Nome" autocomplete="off">
+        <span class="field-error">Obbligatorio</span>
+      </div>
+      <div class="field" id="field-cognome-${n}">
+        <label for="cognome-${n}">Cognome</label>
+        <input type="text" id="cognome-${n}" placeholder="Cognome" autocomplete="off">
+        <span class="field-error">Obbligatorio</span>
+      </div>
+    </div>`;
+  return div;
+}
+
+function updateParticipants(){
+  // Aggiunge o rimuove sezioni extra
+  const current=extraContainer.querySelectorAll('.participant-section').length;
+  const needed=qty-1; // biglietti 2..qty
+  if(needed>current){
+    for(let i=current+1;i<=needed;i++){
+      extraContainer.appendChild(buildExtraParticipant(i+1));
+    }
+  } else if(needed<current){
+    const sections=extraContainer.querySelectorAll('.participant-section');
+    for(let i=sections.length-1;i>=needed;i--){
+      sections[i].remove();
+    }
+  }
+}
+
+function updateUI(){
+  qtyDisplay.textContent=qty;
+  totalAmount.textContent=fmt(qty*PRICE);
+  totalAmount.style.transform='scale(1.1)';
+  setTimeout(()=>{totalAmount.style.transform='scale(1)';},160);
+  qtyMinus.disabled=qty<=1;
+  qtyPlus.disabled=qty>=MAX_QTY;
+  updateParticipants();
+}
+
+qtyMinus.addEventListener('click',()=>{if(qty>1){qty--;updateUI();}});
+qtyPlus.addEventListener('click',()=>{if(qty<MAX_QTY){qty++;updateUI();}});
+
+// Validazione
+function chkField(id,fn){
+  const w=document.getElementById('field-'+id),i=document.getElementById(id);
+  if(!w||!i)return true;
+  const ok=fn(i.value.trim());w.classList.toggle('has-error',!ok);return ok;
+}
+function chkEmail(){
+  const w=document.getElementById('field-email-wrap'),i=document.getElementById('email');
+  const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value.trim());
+  w.classList.toggle('email-has-error',!ok);return ok;
+}
+
+['nome','cognome'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',()=>{
+    if(document.getElementById('field-'+id).classList.contains('has-error'))chkField(id,v=>v.length>=2);
+  });
+});
+document.getElementById('email').addEventListener('input',()=>{
+  if(document.getElementById('field-email-wrap').classList.contains('email-has-error'))chkEmail();
+});
+
+function validateAll(){
+  let ok=true;
+  ok=chkField('nome',v=>v.length>=2)&ok;
+  ok=chkField('cognome',v=>v.length>=2)&ok;
+  ok=chkEmail()&ok;
+  // Valida partecipanti extra
+  for(let n=2;n<=qty;n++){
+    ok=chkField('nome-'+n,v=>v.length>=2)&ok;
+    ok=chkField('cognome-'+n,v=>v.length>=2)&ok;
+  }
+  return ok;
+}
+
+paypalBtn.addEventListener('click',e=>{
+  e.preventDefault();
+  if(!validateAll())return;
+  window.open('https://paypal.me/'+PAYPAL_ME+'/'+(qty*PRICE)+'EUR','_blank','noopener,noreferrer');
+});
+
+totalAmount.style.transition='transform 150ms cubic-bezier(0.16,1,0.3,1)';
+updateUI();
+</script>
+</body>
+</html>
