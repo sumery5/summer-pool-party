@@ -97,6 +97,9 @@ body{
 .submit-status.success{display:block;background:rgba(0,212,160,0.1);border:1px solid rgba(0,212,160,0.3);color:#00d4a0;}
 .submit-status.error{display:block;background:rgba(255,79,123,0.1);border:1px solid rgba(255,79,123,0.3);color:#ff4f7b;}
 .form-note{text-align:center;font-size:11px;color:rgba(255,255,255,0.25);margin-top:12px;line-height:1.6;}
+.paypal-alert{margin-top:6px;padding:14px 16px;border-radius:12px;background:rgba(255,107,26,0.12);border:1px solid rgba(255,107,26,0.34);box-shadow:0 0 0 1px rgba(255,107,26,0.08) inset;text-align:center;}
+.paypal-alert strong{display:block;font-size:13px;letter-spacing:.04em;color:#ffb07a;margin-bottom:6px;text-transform:uppercase;}
+.paypal-alert span{display:block;font-size:13px;line-height:1.65;color:rgba(255,255,255,0.88);}
 .form-note a{color:var(--cyan);text-decoration:none;}
 .form-note a:hover{text-decoration:underline;}
 #extraParticipants{display:flex;flex-direction:column;gap:14px;}
@@ -171,14 +174,19 @@ body{
         <span class="total-amount" id="totalAmount">27,00 €</span>
       </div>
 
-      <!-- <a> invece di <button> per evitare blocco popup su mobile -->
       <a href="#" id="submitBtn" class="btn-paypal" role="button">
         Prenota &amp; Vai su PayPal
       </a>
       <div class="submit-status" id="submitStatus"></div>
 
+      <div class="paypal-alert">
+        <strong>Attenzione pagamento PayPal</strong>
+        <span>Se si apre l'app PayPal e l'importo non viene mostrato, inserisci tu manualmente il totale indicato sopra.</span>
+        <span>Esempio: 2 biglietti = 54,00 €.</span>
+      </div>
+
       <p class="form-note">
-        Prima invii i dati, poi verrai reindirizzato su PayPal.<br>
+        Dopo aver inviato i dati verrai portato su PayPal.<br>
         Info: <a href="https://www.instagram.com/wave.events.party" target="_blank" rel="noopener noreferrer">@wave.events.party</a>
       </p>
     </form>
@@ -242,8 +250,8 @@ function updateUI(){
   setTimeout(()=>{ totalAmount.style.transform='scale(1)'; }, 160);
   qtyMinus.disabled = qty <= 1;
   qtyPlus.disabled  = qty >= MAX_QTY;
-  // Aggiorna anche l'href del link PayPal in tempo reale
-  submitBtn.href = 'https://www.paypal.com/paypalme/'+PAYPAL_ME+'/'+(qty*PRICE);
+  const note = encodeURIComponent('SPP – ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' – \u20ac' + (qty * PRICE));
+  submitBtn.href = 'https://www.paypal.me/' + PAYPAL_ME + '/' + (qty * PRICE) + 'EUR?cn=' + note;
   updateParticipants();
 }
 
@@ -301,24 +309,16 @@ function setStatus(type, msg){
   submitStatus.innerHTML = msg;
 }
 
-// Click handler su <a> — il browser segue l'href nativo senza blocchi popup
 submitBtn.addEventListener('click', function(e){
   if(!validateAll()){
     e.preventDefault();
     return;
   }
-
-  // href già aggiornato da updateUI() — il browser naviga direttamente (funziona su mobile)
   this.target = '_blank';
   this.rel    = 'noopener noreferrer';
-
-  // Disabilita per evitare doppio click
   this.setAttribute('aria-disabled', 'true');
   setStatus('sending', '⏳ Registrazione in corso...');
-
   const data = collectData();
-
-  // Invia dati in background
   fetch(SCRIPT_URL, {
     method:  'POST',
     mode:    'no-cors',
