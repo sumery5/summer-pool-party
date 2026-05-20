@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Summer Pool Party – Iscrizione</title>
-
-<!-- Anteprima link WhatsApp / Social -->
 <meta property="og:title" content="Summer Pool Party – 26 Giugno">
 <meta property="og:description" content="🏖️ Prenota il tuo posto! Super Early Bird €27. Secret Location.">
 <meta property="og:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
@@ -40,7 +38,6 @@ body{
 .bg-image{position:fixed;inset:0;background-image:url('generated-image-3.jpg');background-size:cover;background-position:center top;z-index:0;filter:brightness(0.12) saturate(1.1);}
 .bg-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.82) 100%);z-index:1;}
 .page{position:relative;z-index:2;width:100%;max-width:560px;padding:0 16px;display:flex;flex-direction:column;align-items:center;}
-
 .hero{width:100%;text-align:center;padding:36px 0 16px;}
 .logo-img{display:block;margin:0 auto 6px;max-height:170px;width:auto;}
 .presents{font-size:11px;letter-spacing:.22em;font-weight:300;color:rgba(255,255,255,0.5);margin-bottom:14px;display:block;}
@@ -52,21 +49,17 @@ body{
 .divider-line{width:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);margin:12px auto 13px;}
 .price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
 .price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
-
 .includes-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:14px;}
 .includes-row span{font-size:12px;font-weight:600;letter-spacing:.08em;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;color:rgba(255,255,255,0.8);}
-
 .form-card{width:100%;margin-top:22px;background:var(--card-bg);border:1px solid var(--border-orange);border-radius:20px;padding:28px 26px;backdrop-filter:blur(24px);box-shadow:0 8px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);}
 .form-heading{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#fff;text-align:center;margin-bottom:22px;}
 .form-grid{display:flex;flex-direction:column;gap:14px;}
-
 .participant-section{display:flex;flex-direction:column;gap:12px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px;background:rgba(255,255,255,0.025);position:relative;}
 .participant-section.primary{border-color:rgba(255,107,26,0.25);background:rgba(255,107,26,0.04);}
 .participant-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:2px;}
 .participant-section.primary .participant-label{color:rgba(255,107,26,0.7);}
 .participant-extra{animation:slideIn .3s cubic-bezier(0.16,1,0.3,1);}
 @keyframes slideIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .field{display:flex;flex-direction:column;gap:4px;}
 .field label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
@@ -76,7 +69,6 @@ body{
 .field-error{font-size:11px;color:var(--error);display:none;margin-top:2px;}
 .field.has-error input{border-color:var(--error);}
 .field.has-error .field-error{display:block;}
-
 .field-email-wrap{display:flex;flex-direction:column;gap:4px;}
 .field-email-wrap label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
 .field-email-wrap input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;width:100%;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);}
@@ -85,7 +77,6 @@ body{
 .field-error-email{font-size:11px;color:var(--error);display:none;margin-top:2px;}
 .email-has-error input{border-color:var(--error);}
 .email-has-error .field-error-email{display:block;}
-
 .qty-wrap{display:flex;flex-direction:column;gap:5px;}
 .qty-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
 .qty-control{display:flex;align-items:center;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
@@ -93,22 +84,18 @@ body{
 .qty-btn:hover{background:rgba(255,107,26,0.14);color:var(--orange);}
 .qty-btn:disabled{opacity:.22;cursor:not-allowed;}
 .qty-display{flex:1;text-align:center;font-size:17px;font-weight:600;border-left:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);padding:9px 0;}
-
 .sep{height:1px;background:rgba(255,255,255,0.07);margin:2px 0;}
 .total-box{display:flex;justify-content:space-between;align-items:center;background:rgba(255,107,26,0.07);border:1px solid rgba(255,107,26,0.22);border-radius:12px;padding:12px 16px;}
 .total-label{font-size:13px;color:rgba(255,255,255,0.48);font-weight:500;}
 .total-amount{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.6rem,5.5vw,2.3rem);color:var(--orange);transition:transform 150ms cubic-bezier(0.16,1,0.3,1);filter:drop-shadow(0 0 7px rgba(255,107,26,0.45));}
-
 .btn-paypal{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#ff6b1a 0%,#e03d00 100%);color:#fff;border:none;border-radius:12px;padding:15px 24px;font-family:var(--font-serif);font-weight:700;font-size:clamp(1rem,3.2vw,1.3rem);letter-spacing:.04em;cursor:pointer;margin-top:4px;text-decoration:none;box-shadow:0 0 28px rgba(255,107,26,0.38),0 0 60px rgba(255,80,0,0.14);transition:filter var(--transition),transform var(--transition),box-shadow var(--transition);}
 .btn-paypal:hover{filter:brightness(1.1);box-shadow:0 0 42px rgba(255,107,26,0.55);transform:translateY(-1px);}
 .btn-paypal:active{transform:scale(0.98);}
-.btn-paypal:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
-
+.btn-paypal[aria-disabled="true"]{opacity:.5;cursor:not-allowed;pointer-events:none;}
 .submit-status{display:none;text-align:center;padding:18px;border-radius:12px;font-size:14px;line-height:1.6;margin-top:4px;}
 .submit-status.sending{display:block;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);}
 .submit-status.success{display:block;background:rgba(0,212,160,0.1);border:1px solid rgba(0,212,160,0.3);color:#00d4a0;}
 .submit-status.error{display:block;background:rgba(255,79,123,0.1);border:1px solid rgba(255,79,123,0.3);color:#ff4f7b;}
-
 .form-note{text-align:center;font-size:11px;color:rgba(255,255,255,0.25);margin-top:12px;line-height:1.6;}
 .form-note a{color:var(--cyan);text-decoration:none;}
 .form-note a:hover{text-decoration:underline;}
@@ -184,9 +171,10 @@ body{
         <span class="total-amount" id="totalAmount">27,00 €</span>
       </div>
 
-      <button type="submit" id="submitBtn" class="btn-paypal">
+      <!-- <a> invece di <button> per evitare blocco popup su mobile -->
+      <a href="#" id="submitBtn" class="btn-paypal" role="button">
         Prenota &amp; Vai su PayPal
-      </button>
+      </a>
       <div class="submit-status" id="submitStatus"></div>
 
       <p class="form-note">
@@ -196,22 +184,22 @@ body{
     </form>
   </div>
 </div>
-<footer class="site-footer">© 2025 W-VE∫C — All rights reserved</footer>
+<footer class="site-footer">© 2025 W-VE∫c — All rights reserved</footer>
 
 <script>
-const PRICE       = 27;
-const PAYPAL_ME   = 'zayfrog';
-const MAX_QTY     = 10;
-const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
+const PRICE      = 27;
+const PAYPAL_ME  = 'zayfrog';
+const MAX_QTY    = 10;
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
 
 let qty = 1;
-const qtyDisplay   = document.getElementById('qtyDisplay');
-const totalAmount  = document.getElementById('totalAmount');
-const qtyMinus     = document.getElementById('qtyMinus');
-const qtyPlus      = document.getElementById('qtyPlus');
+const qtyDisplay     = document.getElementById('qtyDisplay');
+const totalAmount    = document.getElementById('totalAmount');
+const qtyMinus       = document.getElementById('qtyMinus');
+const qtyPlus        = document.getElementById('qtyPlus');
 const extraContainer = document.getElementById('extraParticipants');
-const submitBtn    = document.getElementById('submitBtn');
-const submitStatus = document.getElementById('submitStatus');
+const submitBtn      = document.getElementById('submitBtn');
+const submitStatus   = document.getElementById('submitStatus');
 
 function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' €'; }
 
@@ -237,7 +225,7 @@ function buildExtra(n){
 }
 
 function updateParticipants(){
-  const needed = qty - 1;
+  const needed  = qty - 1;
   const current = extraContainer.querySelectorAll('.participant-section').length;
   if(needed > current){
     for(let i=current+1; i<=needed; i++) extraContainer.appendChild(buildExtra(i+1));
@@ -254,6 +242,8 @@ function updateUI(){
   setTimeout(()=>{ totalAmount.style.transform='scale(1)'; }, 160);
   qtyMinus.disabled = qty <= 1;
   qtyPlus.disabled  = qty >= MAX_QTY;
+  // Aggiorna anche l'href del link PayPal in tempo reale
+  submitBtn.href = 'https://www.paypal.com/paypalme/'+PAYPAL_ME+'/'+(qty*PRICE);
   updateParticipants();
 }
 
@@ -311,25 +301,35 @@ function setStatus(type, msg){
   submitStatus.innerHTML = msg;
 }
 
-document.getElementById('regForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  if(!validateAll()) return;
-  const data = collectData();
-  window.open('https://www.paypal.com/paypalme/'+PAYPAL_ME+'/'+(qty*PRICE),'_blank','noopener,noreferrer');
-  submitBtn.disabled = true;
-  setStatus('sending', '⏳ Registrazione in corso...');
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    setStatus('success', '✅ <strong>Registrazione completata!</strong><br>Controlla la tua email — riceverai una conferma a breve.');
-  } catch(err){
-    setStatus('error', '❌ Errore di rete. Riprova o contattaci su Instagram.');
-    submitBtn.disabled = false;
+// Click handler su <a> — il browser segue l'href nativo senza blocchi popup
+submitBtn.addEventListener('click', function(e){
+  if(!validateAll()){
+    e.preventDefault();
+    return;
   }
+
+  // href già aggiornato da updateUI() — il browser naviga direttamente (funziona su mobile)
+  this.target = '_blank';
+  this.rel    = 'noopener noreferrer';
+
+  // Disabilita per evitare doppio click
+  this.setAttribute('aria-disabled', 'true');
+  setStatus('sending', '⏳ Registrazione in corso...');
+
+  const data = collectData();
+
+  // Invia dati in background
+  fetch(SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(data)
+  }).then(()=>{
+    setStatus('success', '✅ <strong>Registrazione completata!</strong><br>Controlla la tua email — riceverai una conferma a breve.');
+  }).catch(()=>{
+    setStatus('error', '❌ Errore di rete. Riprova o contattaci su Instagram.');
+    submitBtn.removeAttribute('aria-disabled');
+  });
 });
 
 totalAmount.style.transition = 'transform 150ms cubic-bezier(0.16,1,0.3,1)';
