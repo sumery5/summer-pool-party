@@ -15,8 +15,6 @@
 <meta name="twitter:title" content="Summer Pool Party – 26 Giugno">
 <meta name="twitter:description" content="🏖️ Prenota il tuo posto! Super Early Bird €27. Secret Location.">
 <meta name="twitter:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Summer Pool Party – Iscrizione</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lilita+One&family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,7 +37,7 @@ body{
   background:#080810;display:flex;flex-direction:column;
   align-items:center;padding:0 0 60px;position:relative;
 }
-.bg-image{position:fixed;inset:0;background-image:url('generated-image-3.jpg');background-size:cover;background-position:center top;z-index:0;filter:brightness(0.25) saturate(1.1);}
+.bg-image{position:fixed;inset:0;background-image:url('generated-image-3.jpg');background-size:cover;background-position:center top;z-index:0;filter:brightness(0.12) saturate(1.1);}
 .bg-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.82) 100%);z-index:1;}
 .page{position:relative;z-index:2;width:100%;max-width:560px;padding:0 16px;display:flex;flex-direction:column;align-items:center;}
 
@@ -54,6 +52,9 @@ body{
 .divider-line{width:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);margin:12px auto 13px;}
 .price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
 .price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
+
+.includes-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:14px;}
+.includes-row span{font-size:12px;font-weight:600;letter-spacing:.08em;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;color:rgba(255,255,255,0.8);}
 
 .form-card{width:100%;margin-top:22px;background:var(--card-bg);border:1px solid var(--border-orange);border-radius:20px;padding:28px 26px;backdrop-filter:blur(24px);box-shadow:0 8px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);}
 .form-heading{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#fff;text-align:center;margin-bottom:22px;}
@@ -103,7 +104,6 @@ body{
 .btn-paypal:active{transform:scale(0.98);}
 .btn-paypal:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
 
-/* Stato invio */
 .submit-status{display:none;text-align:center;padding:18px;border-radius:12px;font-size:14px;line-height:1.6;margin-top:4px;}
 .submit-status.sending{display:block;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);}
 .submit-status.success{display:block;background:rgba(0,212,160,0.1);border:1px solid rgba(0,212,160,0.3);color:#00d4a0;}
@@ -135,6 +135,12 @@ body{
     <div class="divider-line"></div>
     <div class="price-main">Super Early Bird: €27</div>
     <div class="price-sub">Offerta a numero limitato — dopo €32</div>
+    <div class="includes-row">
+      <span>🏊 Pool Access</span>
+      <span>🍹 Open Bar</span>
+      <span>🍔 Food Selection</span>
+      <span>🎧 DJ Set</span>
+    </div>
   </header>
 
   <div class="form-card">
@@ -193,15 +199,10 @@ body{
 <footer class="site-footer">© 2025 W-VE∫C — All rights reserved</footer>
 
 <script>
-// ─────────────────────────────────────────────
-// CONFIGURAZIONE — modifica solo questi valori
-// ─────────────────────────────────────────────
 const PRICE       = 27;
 const PAYPAL_ME   = 'zayfrog';
 const MAX_QTY     = 10;
-// Incolla qui l'URL del tuo Google Apps Script (vedi istruzioni)
 const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
-// ─────────────────────────────────────────────
 
 let qty = 1;
 const qtyDisplay   = document.getElementById('qtyDisplay');
@@ -259,7 +260,6 @@ function updateUI(){
 qtyMinus.addEventListener('click', ()=>{ if(qty>1){ qty--; updateUI(); }});
 qtyPlus.addEventListener('click',  ()=>{ if(qty<MAX_QTY){ qty++; updateUI(); }});
 
-// Validazione
 function chkField(id, fn){
   const w=document.getElementById('field-'+id), i=document.getElementById(id);
   if(!w||!i) return true;
@@ -285,7 +285,6 @@ function validateAll(){
   return !!ok;
 }
 
-// Raccoglie tutti i partecipanti
 function collectData(){
   const participants = [];
   participants.push({
@@ -315,15 +314,10 @@ function setStatus(type, msg){
 document.getElementById('regForm').addEventListener('submit', async e => {
   e.preventDefault();
   if(!validateAll()) return;
-
   const data = collectData();
-
-  // Apri PayPal SUBITO dentro l'evento click — prima di qualsiasi async
   window.open('https://www.paypal.com/paypalme/'+PAYPAL_ME+'/'+(qty*PRICE),'_blank','noopener,noreferrer');
-
   submitBtn.disabled = true;
   setStatus('sending', '⏳ Registrazione in corso...');
-
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
