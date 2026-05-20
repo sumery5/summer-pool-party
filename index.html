@@ -30,11 +30,7 @@ html{-webkit-font-smoothing:antialiased}
   --font-body:'Inter',sans-serif;
   --transition:180ms cubic-bezier(0.16,1,0.3,1);
 }
-body{
-  min-height:100dvh;font-family:var(--font-body);color:#fff;
-  background:#080810;display:flex;flex-direction:column;
-  align-items:center;padding:0 0 60px;position:relative;
-}
+body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#080810;display:flex;flex-direction:column;align-items:center;padding:0 0 60px;position:relative;}
 .bg-image{position:fixed;inset:0;background-image:url('generated-image-3.jpg');background-size:cover;background-position:center top;z-index:0;filter:brightness(0.12) saturate(1.1);}
 .bg-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.82) 100%);z-index:1;}
 .page{position:relative;z-index:2;width:100%;max-width:560px;padding:0 16px;display:flex;flex-direction:column;align-items:center;}
@@ -45,7 +41,10 @@ body{
 .title-pool{font-family:var(--font-display);font-size:clamp(2.2rem,9vw,4.2rem);line-height:.9;letter-spacing:.02em;display:block;color:rgba(0,20,35,0.2);-webkit-text-stroke:2px #00d4ff;text-shadow:0 0 12px rgba(0,212,255,1),0 0 35px rgba(0,180,255,0.5),0 0 70px rgba(0,140,255,0.22);margin-bottom:6px;}
 .title-vibes{font-family:var(--font-vibes);font-size:clamp(1.2rem,5vw,2.2rem);letter-spacing:.03em;display:block;color:#fff;text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,0 4px 10px rgba(0,0,0,0.7);margin-bottom:22px;}
 .event-date{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.6rem,7vw,2.8rem);color:#fff;letter-spacing:.06em;line-height:1;}
-.event-location{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;gap:5px;margin-top:5px;}
+.event-time{font-size:14px;color:rgba(255,255,255,0.75);margin-top:6px;letter-spacing:.05em;font-weight:500;}
+.event-location{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;gap:5px;margin-top:5px;flex-wrap:wrap;}
+.event-location a{color:var(--cyan);text-decoration:none;}
+.event-location a:hover{text-decoration:underline;}
 .divider-line{width:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);margin:12px auto 13px;}
 .price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
 .price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
@@ -118,18 +117,19 @@ body{
     <span class="title-pool">POOL PARTY</span>
     <span class="title-vibes">Coachella Vibes</span>
     <div class="event-date">26 GIUGNO</div>
+    <div class="event-time">&#128342; Start 19:00 &middot; Until late</div>
     <div class="event-location">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Secret Location
+      Secret Location &nbsp;&middot;&nbsp; Giarre (CT)
     </div>
     <div class="divider-line"></div>
-    <div class="price-main">Super Early Bird: €27</div>
-    <div class="price-sub">Offerta a numero limitato — dopo €32</div>
+    <div class="price-main">Super Early Bird: &euro;27</div>
+    <div class="price-sub">Offerta a numero limitato &mdash; dopo &euro;32</div>
     <div class="includes-row">
-      <span>🏊 Pool Access</span>
-      <span>🍹 Open Bar</span>
-      <span>🍔 Food Selection</span>
-      <span>🎧 DJ Set</span>
+      <span>&#127946; Pool Access</span>
+      <span>&#127865; Open Bar</span>
+      <span>&#127828; Food Selection</span>
+      <span>&#127911; DJ Set</span>
     </div>
   </header>
 
@@ -139,14 +139,14 @@ body{
       <div class="qty-wrap">
         <span class="qty-label">Numero biglietti</span>
         <div class="qty-control" role="group">
-          <button type="button" class="qty-btn" id="qtyMinus" aria-label="Riduci">−</button>
+          <button type="button" class="qty-btn" id="qtyMinus" aria-label="Riduci">&minus;</button>
           <span class="qty-display" id="qtyDisplay" aria-live="polite">1</span>
           <button type="button" class="qty-btn" id="qtyPlus" aria-label="Aumenta">+</button>
         </div>
       </div>
 
       <div class="participant-section primary">
-        <div class="participant-label">Biglietto 1 — Intestatario pagamento</div>
+        <div class="participant-label">Biglietto 1 &mdash; Intestatario pagamento</div>
         <div class="field-row">
           <div class="field" id="field-nome">
             <label for="nome">Nome</label>
@@ -171,7 +171,7 @@ body{
       <div class="sep"></div>
       <div class="total-box">
         <span class="total-label">Totale da pagare</span>
-        <span class="total-amount" id="totalAmount">27,00 €</span>
+        <span class="total-amount" id="totalAmount">27,00 &euro;</span>
       </div>
 
       <a href="#" id="submitBtn" class="btn-paypal" role="button">
@@ -182,7 +182,7 @@ body{
       <div class="paypal-alert">
         <strong>Attenzione pagamento PayPal</strong>
         <span>Se si apre l'app PayPal e l'importo non viene mostrato, inserisci tu manualmente il totale indicato sopra.</span>
-        <span>Esempio: 2 biglietti = 54,00 €.</span>
+        <span>Esempio: 2 biglietti = 54,00 &euro;.</span>
       </div>
 
       <p class="form-note">
@@ -192,7 +192,7 @@ body{
     </form>
   </div>
 </div>
-<footer class="site-footer">© 2025 W-VE∫c — All rights reserved</footer>
+<footer class="site-footer">&copy; 2025 W-VE&#x222B;c &mdash; All rights reserved</footer>
 
 <script>
 const PRICE      = 27;
@@ -209,26 +209,26 @@ const extraContainer = document.getElementById('extraParticipants');
 const submitBtn      = document.getElementById('submitBtn');
 const submitStatus   = document.getElementById('submitStatus');
 
-function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' €'; }
+function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' \u20ac'; }
 
 function buildExtra(n){
   const div = document.createElement('div');
   div.className = 'participant-section participant-extra';
   div.id = 'participant-'+n;
-  div.innerHTML = `
-    <div class="participant-label">Biglietto ${n}</div>
-    <div class="field-row">
-      <div class="field" id="field-nome-${n}">
-        <label for="nome-${n}">Nome</label>
-        <input type="text" id="nome-${n}" placeholder="Nome" autocomplete="off">
-        <span class="field-error">Obbligatorio</span>
-      </div>
-      <div class="field" id="field-cognome-${n}">
-        <label for="cognome-${n}">Cognome</label>
-        <input type="text" id="cognome-${n}" placeholder="Cognome" autocomplete="off">
-        <span class="field-error">Obbligatorio</span>
-      </div>
-    </div>`;
+  div.innerHTML =
+    '<div class="participant-label">Biglietto '+n+'</div>'+
+    '<div class="field-row">'+
+      '<div class="field" id="field-nome-'+n+'">'+
+        '<label for="nome-'+n+'">Nome</label>'+
+        '<input type="text" id="nome-'+n+'" placeholder="Nome" autocomplete="off">'+
+        '<span class="field-error">Obbligatorio</span>'+
+      '</div>'+
+      '<div class="field" id="field-cognome-'+n+'">'+
+        '<label for="cognome-'+n+'">Cognome</label>'+
+        '<input type="text" id="cognome-'+n+'" placeholder="Cognome" autocomplete="off">'+
+        '<span class="field-error">Obbligatorio</span>'+
+      '</div>'+
+    '</div>';
   return div;
 }
 
@@ -250,7 +250,7 @@ function updateUI(){
   setTimeout(()=>{ totalAmount.style.transform='scale(1)'; }, 160);
   qtyMinus.disabled = qty <= 1;
   qtyPlus.disabled  = qty >= MAX_QTY;
-  const note = encodeURIComponent('SPP – ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' – \u20ac' + (qty * PRICE));
+  const note = encodeURIComponent('SPP \u2013 ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' \u2013 \u20ac' + (qty * PRICE));
   submitBtn.href = 'https://www.paypal.me/' + PAYPAL_ME + '/' + (qty * PRICE) + 'EUR?cn=' + note;
   updateParticipants();
 }
@@ -317,7 +317,7 @@ submitBtn.addEventListener('click', function(e){
   this.target = '_blank';
   this.rel    = 'noopener noreferrer';
   this.setAttribute('aria-disabled', 'true');
-  setStatus('sending', '⏳ Registrazione in corso...');
+  setStatus('sending', '\u23f3 Registrazione in corso...');
   const data = collectData();
   fetch(SCRIPT_URL, {
     method:  'POST',
@@ -325,9 +325,9 @@ submitBtn.addEventListener('click', function(e){
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(data)
   }).then(()=>{
-    setStatus('success', '✅ <strong>Registrazione completata!</strong><br>Controlla la tua email — riceverai una conferma a breve.');
+    setStatus('success', '\u2705 <strong>Registrazione completata!</strong><br>Controlla la tua email \u2014 riceverai una conferma a breve.');
   }).catch(()=>{
-    setStatus('error', '❌ Errore di rete. Riprova o contattaci su Instagram.');
+    setStatus('error', '\u274c Errore di rete. Riprova o contattaci su Instagram.');
     submitBtn.removeAttribute('aria-disabled');
   });
 });
