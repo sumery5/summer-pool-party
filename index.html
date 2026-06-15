@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Summer Pool Party – Iscrizione</title>
 <meta property="og:title" content="Summer Pool Party – 26 Giugno">
-<meta property="og:description" content="🏖️ Prenota il tuo posto! Super Early Bird €27. Secret Location.">
+<meta property="og:description" content="🏖️ Prenota il tuo posto! Biglietto €32. Secret Location · Giarre (CT).">
 <meta property="og:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
 <meta property="og:url" content="https://summer-pool-party.netlify.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Summer Pool Party – 26 Giugno">
-<meta name="twitter:description" content="🏖️ Prenota il tuo posto! Super Early Bird €27. Secret Location.">
+<meta name="twitter:description" content="🏖️ Prenota il tuo posto! Biglietto €32. Secret Location · Giarre (CT).">
 <meta name="twitter:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,13 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
 .price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
 .includes-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:14px;}
+.promo-badge{
+  display:inline-block;margin:0 auto 14px;padding:9px 20px;
+  background:linear-gradient(135deg,rgba(255,107,26,0.18),rgba(255,60,0,0.1));
+  border:1px solid rgba(255,107,26,0.5);border-radius:30px;
+  font-size:13px;font-weight:700;color:#ffb07a;letter-spacing:.03em;
+  text-align:center;box-shadow:0 0 18px rgba(255,107,26,0.18);
+}
 .includes-row span{font-size:12px;font-weight:600;letter-spacing:.08em;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;color:rgba(255,255,255,0.8);}
 .form-card{width:100%;margin-top:22px;background:var(--card-bg);border:1px solid var(--border-orange);border-radius:20px;padding:28px 26px;backdrop-filter:blur(24px);box-shadow:0 8px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);}
 .form-heading{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#fff;text-align:center;margin-bottom:22px;}
@@ -123,8 +130,9 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
       Secret Location &nbsp;&middot;&nbsp; Giarre (CT)
     </div>
     <div class="divider-line"></div>
-    <div class="price-main">Super Early Bird: &euro;27</div>
-    <div class="price-sub">Offerta a numero limitato &mdash; dopo &euro;32</div>
+    <div class="price-main">Biglietto: &euro;32</div>
+    <div class="price-sub">Biglietto nominale &mdash; posti limitati</div>
+    <div class="promo-badge">🎉 Gruppo da 5? Paghi solo 4 biglietti — 1 omaggio!</div>
     <div class="includes-row">
       <span>&#127946; Pool Access</span>
       <span>&#127865; Open Bar</span>
@@ -168,10 +176,16 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 
       <div id="extraParticipants"></div>
 
+      <div class="field" id="field-referral" style="margin-top:2px;">
+        <label for="referral" style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);">Da chi o dove hai ricevuto l&#39;invito? <span style="color:rgba(255,107,26,0.8);">*</span></label>
+        <input type="text" id="referral" placeholder="Es. Mario Rossi, Gruppo WhatsApp Spiaggia..." autocomplete="off" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;width:100%;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);">
+        <span id="referral-error" style="font-size:11px;color:var(--error);display:none;margin-top:2px;">Obbligatorio</span>
+      </div>
+
       <div class="sep"></div>
       <div class="total-box">
         <span class="total-label">Totale da pagare</span>
-        <span class="total-amount" id="totalAmount">27,00 &euro;</span>
+        <span class="total-amount" id="totalAmount">32,00 &euro;</span>
       </div>
 
       <a href="#" id="submitBtn" class="btn-paypal" role="button">
@@ -182,7 +196,7 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
       <div class="paypal-alert">
         <strong>Attenzione pagamento PayPal</strong>
         <span>Se si apre l'app PayPal e l'importo non viene mostrato, inserisci tu manualmente il totale indicato sopra.</span>
-        <span>Esempio: 2 biglietti = 54,00 &euro;.</span>
+        <span>Esempio: 2 biglietti = 64,00 &euro; &mdash; 5 biglietti = 128,00 &euro; (1 omaggio).</span>
       </div>
 
       <p class="form-note">
@@ -195,7 +209,7 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 <footer class="site-footer">&copy; 2025 W-VE&#x222B;c &mdash; All rights reserved</footer>
 
 <script>
-const PRICE      = 27;
+const PRICE      = 32;
 const PAYPAL_ME  = 'zayfrog';
 const MAX_QTY    = 10;
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
@@ -210,6 +224,19 @@ const submitBtn      = document.getElementById('submitBtn');
 const submitStatus   = document.getElementById('submitStatus');
 
 function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' \u20ac'; }
+
+function calcTotal(q){
+  // Every 5 tickets: pay 4 (1 free)
+  const groups    = Math.floor(q / 5);
+  const remainder = q % 5;
+  return (groups * 4 + remainder) * PRICE;
+}
+
+function promoNote(q){
+  if(q < 5) return '';
+  const free = Math.floor(q / 5);
+  return '\uD83C\uDF89 ' + free + ' bigliett' + (free > 1 ? 'i' : 'o') + ' omaggio inclus' + (free > 1 ? 'i' : 'o') + '!';
+}
 
 function buildExtra(n){
   const div = document.createElement('div');
@@ -245,13 +272,25 @@ function updateParticipants(){
 
 function updateUI(){
   qtyDisplay.textContent = qty;
-  totalAmount.textContent = fmt(qty * PRICE);
+  const total = calcTotal(qty);
+  totalAmount.textContent = fmt(total);
+  // Show/hide promo note
+  let promoEl = document.getElementById('promoNote');
+  const promoMsg = promoNote(qty);
+  if(!promoEl){
+    promoEl = document.createElement('div');
+    promoEl.id = 'promoNote';
+    promoEl.style.cssText = 'text-align:center;font-size:13px;font-weight:700;color:#00d4a0;margin-top:4px;min-height:20px;transition:opacity .3s;';
+    totalAmount.parentNode.parentNode.appendChild(promoEl);
+  }
+  promoEl.textContent = promoMsg;
+  promoEl.style.opacity = promoMsg ? '1' : '0';
   totalAmount.style.transform = 'scale(1.1)';
   setTimeout(()=>{ totalAmount.style.transform='scale(1)'; }, 160);
   qtyMinus.disabled = qty <= 1;
   qtyPlus.disabled  = qty >= MAX_QTY;
-  const note = encodeURIComponent('SPP \u2013 ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' \u2013 \u20ac' + (qty * PRICE));
-  submitBtn.href = 'https://www.paypal.me/' + PAYPAL_ME + '/' + (qty * PRICE) + 'EUR?cn=' + note;
+  const paypalNote = encodeURIComponent('SPP \u2013 ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' \u2013 \u20ac' + total);
+  submitBtn.href = 'https://www.paypal.me/' + PAYPAL_ME + '/' + total + 'EUR?cn=' + paypalNote;
   updateParticipants();
 }
 
@@ -280,6 +319,11 @@ function validateAll(){
     ok = chkField('nome-'+n, v=>v.length>=2) & ok;
     ok = chkField('cognome-'+n, v=>v.length>=2) & ok;
   }
+  const refEl = document.getElementById('referral');
+  const refOk = refEl.value.trim().length >= 2;
+  refEl.style.borderColor = refOk ? '' : 'var(--error)';
+  document.getElementById('referral-error').style.display = refOk ? 'none' : 'block';
+  ok = refOk & ok;
   return !!ok;
 }
 
@@ -299,7 +343,8 @@ function collectData(){
     timestamp: new Date().toISOString(),
     email: document.getElementById('email').value.trim(),
     biglietti: qty,
-    totale: qty * PRICE,
+    totale: calcTotal(qty),
+    referral: document.getElementById('referral').value.trim(),
     participants
   };
 }
