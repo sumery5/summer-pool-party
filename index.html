@@ -109,6 +109,20 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .form-note a{color:var(--cyan);text-decoration:none;}
 .form-note a:hover{text-decoration:underline;}
 #extraParticipants{display:flex;flex-direction:column;gap:14px;}
+
+.promo-wrap{display:flex;flex-direction:column;gap:5px;margin-top:2px;}
+.promo-row{display:flex;gap:8px;align-items:flex-start;}
+.promo-row input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;text-transform:uppercase;letter-spacing:.06em;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);}
+.promo-row input:focus{outline:none;border-color:var(--cyan);background:rgba(0,212,255,0.06);box-shadow:0 0 0 3px rgba(0,212,255,0.14);}
+.promo-row input::placeholder{color:rgba(255,255,255,0.18);text-transform:none;letter-spacing:0;}
+.promo-row input.promo-valid{border-color:var(--success);background:rgba(0,212,160,0.07);}
+.promo-row input.promo-invalid{border-color:var(--error);background:rgba(255,79,123,0.07);}
+.btn-promo{padding:10px 16px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background var(--transition),border-color var(--transition);}
+.btn-promo:hover{background:rgba(0,212,255,0.15);border-color:var(--cyan);}
+.promo-feedback{font-size:12px;min-height:16px;transition:opacity .2s;}
+.promo-feedback.ok{color:var(--success);}
+.promo-feedback.ko{color:var(--error);}
+
 .site-footer{position:relative;z-index:2;margin-top:24px;font-size:10px;color:rgba(255,255,255,0.16);text-align:center;letter-spacing:.07em;text-transform:uppercase;}
 @media(max-width:420px){.form-card{padding:20px 14px;}.field-row{grid-template-columns:1fr;}}
 </style>
@@ -182,6 +196,15 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
         <span id="referral-error" style="font-size:11px;color:var(--error);display:none;margin-top:2px;">Obbligatorio</span>
       </div>
 
+      <div class="promo-wrap">
+        <span class="qty-label">Hai un codice promozionale? <span style="color:rgba(255,255,255,0.28);font-weight:400;text-transform:none;letter-spacing:0;">(opzionale — sconto €5)</span></span>
+        <div class="promo-row">
+          <input type="text" id="promoCode" placeholder="Es. WAVE3YAO" maxlength="12" autocomplete="off" autocorrect="off" spellcheck="false">
+          <button type="button" class="btn-promo" id="btnPromo">Applica</button>
+        </div>
+        <div class="promo-feedback" id="promoFeedback"></div>
+      </div>
+
       <div class="sep"></div>
       <div class="total-box">
         <span class="total-label">Totale da pagare</span>
@@ -225,11 +248,67 @@ const submitStatus   = document.getElementById('submitStatus');
 
 function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' \u20ac'; }
 
+
+const PROMO_DISCOUNT = 5;
+let promoApplied = false;
+
+function applyPromo(){
+  const input = document.getElementById('promoCode');
+  const fb    = document.getElementById('promoFeedback');
+  const btn   = document.getElementById('btnPromo');
+  const code  = input.value.trim().toUpperCase();
+  if(!code){ fb.className='promo-feedback ko'; fb.textContent='Inserisci un codice.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = '...';
+  fb.className = 'promo-feedback';
+  fb.textContent = '⏳ Verifica in corso...';
+
+  fetch(SCRIPT_URL + '?action=checkPromo&code=' + encodeURIComponent(code))
+    .then(r => r.json())
+    .then(res => {
+      if(res.valid){
+        promoApplied = true;
+        input.classList.remove('promo-invalid');
+        input.classList.add('promo-valid');
+        input.readOnly = true;
+        btn.disabled = true;
+        btn.style.opacity = '.4';
+        btn.textContent = 'Applicato';
+        fb.className = 'promo-feedback ok';
+        fb.textContent = '✅ Codice valido! Sconto di €5 applicato.';
+        updateUI();
+      } else {
+        promoApplied = false;
+        input.classList.remove('promo-valid');
+        input.classList.add('promo-invalid');
+        btn.disabled = false;
+        btn.textContent = 'Applica';
+        fb.className = 'promo-feedback ko';
+        fb.textContent = res.reason === 'used'
+          ? '❌ Codice già utilizzato.'
+          : '❌ Codice non valido.';
+        updateUI();
+      }
+    })
+    .catch(()=>{
+      btn.disabled = false;
+      btn.textContent = 'Applica';
+      fb.className = 'promo-feedback ko';
+      fb.textContent = '❌ Errore di rete. Riprova.';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('btnPromo').addEventListener('click', applyPromo);
+  document.getElementById('promoCode').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); applyPromo(); } });
+});
+
 function calcTotal(q){
-  // Every 5 tickets: pay 4 (1 free)
   const groups    = Math.floor(q / 5);
   const remainder = q % 5;
-  return (groups * 4 + remainder) * PRICE;
+  const base = (groups * 4 + remainder) * PRICE;
+  return promoApplied ? Math.max(0, base - PROMO_DISCOUNT) : base;
 }
 
 function promoNote(q){
@@ -319,6 +398,14 @@ function validateAll(){
     ok = chkField('nome-'+n, v=>v.length>=2) & ok;
     ok = chkField('cognome-'+n, v=>v.length>=2) & ok;
   }
+  // Block if promo code typed but invalid
+  const promoInput = document.getElementById('promoCode').value.trim();
+  if(promoInput && !promoApplied){
+    document.getElementById('promoFeedback').className='promo-feedback ko';
+    document.getElementById('promoFeedback').textContent='❌ Codice non valido. Rimuovilo o correggilo.';
+    document.getElementById('promoCode').classList.add('promo-invalid');
+    ok = false;
+  }
   const refEl = document.getElementById('referral');
   const refOk = refEl.value.trim().length >= 2;
   refEl.style.borderColor = refOk ? '' : 'var(--error)';
@@ -345,6 +432,7 @@ function collectData(){
     biglietti: qty,
     totale: calcTotal(qty),
     referral: document.getElementById('referral').value.trim(),
+    promoCode: promoApplied ? document.getElementById('promoCode').value.trim().toUpperCase() : '',
     participants
   };
 }
