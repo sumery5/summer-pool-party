@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Summer Pool Party – Iscrizione</title>
 <meta property="og:title" content="Summer Pool Party – 26 Giugno">
-<meta property="og:description" content="🏖️ Prenota il tuo posto! Biglietto €32. Secret Location · Giarre (CT).">
+<meta property="og:description" content="🏖️ Prenota il tuo posto! Full €32 · Late Night €19,90. Secret Location · Giarre (CT).">
 <meta property="og:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
 <meta property="og:url" content="https://summer-pool-party.netlify.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Summer Pool Party – 26 Giugno">
-<meta name="twitter:description" content="🏖️ Prenota il tuo posto! Biglietto €32. Secret Location · Giarre (CT).">
+<meta name="twitter:description" content="🏖️ Prenota il tuo posto! Full €32 · Late Night €19,90. Secret Location · Giarre (CT).">
 <meta name="twitter:image" content="https://summer-pool-party.netlify.app/generated-image-3.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased}
 :root{
-  --orange:#ff6b1a;--cyan:#00d4ff;
+  --orange:#ff6b1a;--cyan:#00d4ff;--purple:#c084fc;
   --card-bg:rgba(6,6,10,0.83);
   --border-orange:rgba(255,107,26,0.32);
   --error:#ff4f7b;--success:#00d4a0;
@@ -46,17 +46,35 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .event-location a{color:var(--cyan);text-decoration:none;}
 .event-location a:hover{text-decoration:underline;}
 .divider-line{width:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);margin:12px auto 13px;}
-.price-main{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.1rem,4vw,1.7rem);color:#fff;text-align:center;}
-.price-sub{font-family:var(--font-serif);font-style:italic;font-size:clamp(.72rem,2.2vw,.9rem);color:rgba(255,255,255,0.42);margin-top:3px;text-align:center;}
+.promo-badge{display:inline-block;margin:0 auto 14px;padding:9px 20px;background:linear-gradient(135deg,rgba(255,107,26,0.18),rgba(255,60,0,0.1));border:1px solid rgba(255,107,26,0.5);border-radius:30px;font-size:13px;font-weight:700;color:#ffb07a;letter-spacing:.03em;text-align:center;box-shadow:0 0 18px rgba(255,107,26,0.18);}
+
+/* ── Ticket Type Selector ── */
+.ticket-type-wrap{width:100%;margin-bottom:6px;}
+.ticket-type-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;display:block;}
+.ticket-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ticket-card{border-radius:14px;padding:16px 14px;cursor:pointer;transition:all var(--transition);border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);position:relative;text-align:left;}
+.ticket-card:hover{border-color:rgba(255,255,255,0.25);}
+.ticket-card.selected-full{border-color:var(--orange);background:rgba(255,107,26,0.1);box-shadow:0 0 20px rgba(255,107,26,0.2);}
+.ticket-card.selected-late{border-color:var(--purple);background:rgba(192,132,252,0.1);box-shadow:0 0 20px rgba(192,132,252,0.2);}
+.ticket-card-icon{font-size:22px;margin-bottom:6px;display:block;}
+.ticket-card-name{font-family:var(--font-serif);font-weight:700;font-size:15px;color:#fff;display:block;margin-bottom:2px;}
+.ticket-card-price{font-family:var(--font-serif);font-weight:700;font-size:22px;margin-bottom:6px;display:block;}
+.ticket-card.selected-full .ticket-card-price{color:var(--orange);}
+.ticket-card.selected-late .ticket-card-price{color:var(--purple);}
+.ticket-card:not(.selected-full):not(.selected-late) .ticket-card-price{color:rgba(255,255,255,0.6);}
+.ticket-card-includes{display:flex;flex-direction:column;gap:3px;}
+.ticket-card-includes span{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:.03em;display:flex;align-items:center;gap:4px;}
+.ticket-card-includes span.yes{color:rgba(255,255,255,0.75);}
+.ticket-card-includes span.no{color:rgba(255,255,255,0.28);text-decoration:line-through;}
+.ticket-radio{position:absolute;top:10px;right:10px;width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);background:transparent;transition:all var(--transition);}
+.ticket-card.selected-full .ticket-radio{border-color:var(--orange);background:var(--orange);}
+.ticket-card.selected-late .ticket-radio{border-color:var(--purple);background:var(--purple);}
+.late-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:var(--purple);border-radius:20px;padding:2px 8px;margin-bottom:6px;}
+
+/* pill includes in hero */
 .includes-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:14px;}
-.promo-badge{
-  display:inline-block;margin:0 auto 14px;padding:9px 20px;
-  background:linear-gradient(135deg,rgba(255,107,26,0.18),rgba(255,60,0,0.1));
-  border:1px solid rgba(255,107,26,0.5);border-radius:30px;
-  font-size:13px;font-weight:700;color:#ffb07a;letter-spacing:.03em;
-  text-align:center;box-shadow:0 0 18px rgba(255,107,26,0.18);
-}
 .includes-row span{font-size:12px;font-weight:600;letter-spacing:.08em;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;color:rgba(255,255,255,0.8);}
+
 .form-card{width:100%;margin-top:22px;background:var(--card-bg);border:1px solid var(--border-orange);border-radius:20px;padding:28px 26px;backdrop-filter:blur(24px);box-shadow:0 8px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);}
 .form-heading{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#fff;text-align:center;margin-bottom:22px;}
 .form-grid{display:flex;flex-direction:column;gap:14px;}
@@ -92,12 +110,16 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .qty-display{flex:1;text-align:center;font-size:17px;font-weight:600;border-left:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);padding:9px 0;}
 .sep{height:1px;background:rgba(255,255,255,0.07);margin:2px 0;}
 .total-box{display:flex;justify-content:space-between;align-items:center;background:rgba(255,107,26,0.07);border:1px solid rgba(255,107,26,0.22);border-radius:12px;padding:12px 16px;}
+.total-box.late-mode{background:rgba(192,132,252,0.07);border-color:rgba(192,132,252,0.22);}
 .total-label{font-size:13px;color:rgba(255,255,255,0.48);font-weight:500;}
 .total-amount{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.6rem,5.5vw,2.3rem);color:var(--orange);transition:transform 150ms cubic-bezier(0.16,1,0.3,1);filter:drop-shadow(0 0 7px rgba(255,107,26,0.45));}
+.total-amount.late-mode{color:var(--purple);filter:drop-shadow(0 0 7px rgba(192,132,252,0.45));}
 .btn-paypal{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#ff6b1a 0%,#e03d00 100%);color:#fff;border:none;border-radius:12px;padding:15px 24px;font-family:var(--font-serif);font-weight:700;font-size:clamp(1rem,3.2vw,1.3rem);letter-spacing:.04em;cursor:pointer;margin-top:4px;text-decoration:none;box-shadow:0 0 28px rgba(255,107,26,0.38),0 0 60px rgba(255,80,0,0.14);transition:filter var(--transition),transform var(--transition),box-shadow var(--transition);}
 .btn-paypal:hover{filter:brightness(1.1);box-shadow:0 0 42px rgba(255,107,26,0.55);transform:translateY(-1px);}
 .btn-paypal:active{transform:scale(0.98);}
 .btn-paypal[aria-disabled="true"]{opacity:.5;cursor:not-allowed;pointer-events:none;}
+.btn-paypal.late-mode{background:linear-gradient(135deg,#a855f7 0%,#7c3aed 100%);box-shadow:0 0 28px rgba(168,85,247,0.38);}
+.btn-paypal.late-mode:hover{box-shadow:0 0 42px rgba(168,85,247,0.55);}
 .submit-status{display:none;text-align:center;padding:18px;border-radius:12px;font-size:14px;line-height:1.6;margin-top:4px;}
 .submit-status.sending{display:block;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);}
 .submit-status.success{display:block;background:rgba(0,212,160,0.1);border:1px solid rgba(0,212,160,0.3);color:#00d4a0;}
@@ -110,7 +132,8 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .form-note a:hover{text-decoration:underline;}
 #extraParticipants{display:flex;flex-direction:column;gap:14px;}
 
-.promo-wrap{display:flex;flex-direction:column;gap:5px;margin-top:2px;}
+.promo-wrap{display:flex;flex-direction:column;gap:5px;margin-top:2px;transition:opacity .3s;}
+.promo-wrap.disabled-promo{opacity:.35;pointer-events:none;}
 .promo-row{display:flex;gap:8px;align-items:flex-start;}
 .promo-row input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;text-transform:uppercase;letter-spacing:.06em;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);}
 .promo-row input:focus{outline:none;border-color:var(--cyan);background:rgba(0,212,255,0.06);box-shadow:0 0 0 3px rgba(0,212,255,0.14);}
@@ -122,9 +145,13 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 .promo-feedback{font-size:12px;min-height:16px;transition:opacity .2s;}
 .promo-feedback.ok{color:var(--success);}
 .promo-feedback.ko{color:var(--error);}
+.late-promo-note{font-size:11px;color:rgba(192,132,252,0.7);margin-top:2px;display:none;}
+.late-promo-note.visible{display:block;}
 
+.ig-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:16px;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);transition:color var(--transition),border-color var(--transition),background var(--transition);}
+.ig-link:hover{color:#fff;border-color:rgba(225,48,108,0.6);background:rgba(225,48,108,0.12);}
 .site-footer{position:relative;z-index:2;margin-top:24px;font-size:10px;color:rgba(255,255,255,0.16);text-align:center;letter-spacing:.07em;text-transform:uppercase;}
-@media(max-width:420px){.form-card{padding:20px 14px;}.field-row{grid-template-columns:1fr;}}
+@media(max-width:420px){.form-card{padding:20px 14px;}.field-row{grid-template-columns:1fr;}.ticket-type-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -134,19 +161,21 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
   <header class="hero">
     <img src="logo.png" alt="Logo" class="logo-img">
     <span class="presents">presents</span>
+    <a href="https://www.instagram.com/wave.events.party" target="_blank" rel="noopener noreferrer" class="ig-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @wave.events.party
+    </a>
     <span class="title-summer">SUMMER</span>
     <span class="title-pool">POOL PARTY</span>
     <span class="title-vibes">Coachella Vibes</span>
     <div class="event-date">26 GIUGNO</div>
-    <div class="event-time">&#128342; Start 19:00 &middot; Until late</div>
+    <div class="event-time"><span id="heroTime">&#128342; Start 18:00 &middot; Until late</span></div>
     <div class="event-location">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Secret Location &nbsp;&middot;&nbsp; Giarre (CT)
     </div>
     <div class="divider-line"></div>
-    <div class="price-main">Biglietto: &euro;32</div>
-    <div class="price-sub">Biglietto nominale &mdash; posti limitati</div>
-    <div class="promo-badge">🎉 Gruppo da 5? Paghi solo 4 biglietti — 1 omaggio!</div>
+    <div class="promo-badge">🎉 Gruppo da 5? Paghi solo 4 biglietti — 1 omaggio! <span style="color:rgba(255,255,255,0.4);font-weight:400;">(solo Full)</span></div>
     <div class="includes-row">
       <span>&#127946; Pool Access</span>
       <span>&#127865; Open Bar</span>
@@ -158,6 +187,43 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
   <div class="form-card">
     <div class="form-heading">Prenota il tuo posto</div>
     <form id="regForm" class="form-grid" novalidate>
+
+      <!-- TICKET TYPE SELECTOR -->
+      <div class="ticket-type-wrap">
+        <span class="ticket-type-label">Scegli il tipo di biglietto</span>
+        <div class="ticket-type-grid">
+          <!-- FULL -->
+          <div class="ticket-card selected-full" id="cardFull" onclick="selectTicket('full')">
+            <div class="ticket-radio" id="radioFull"></div>
+            <span class="ticket-card-icon">🌅</span>
+            <span class="ticket-card-name">Full</span>
+            <span class="ticket-card-price">&euro;32</span>
+            <div class="ticket-card-includes">
+              <span class="yes">&#10003; Pool Access</span>
+              <span class="yes">&#10003; Open Bar</span>
+              <span class="yes">&#10003; Food</span>
+              <span class="yes">&#10003; DJ Set</span>
+              <span class="yes" style="color:rgba(255,107,26,0.8);">&#10003; Dalle 18:00</span>
+            </div>
+          </div>
+          <!-- LATE -->
+          <div class="ticket-card" id="cardLate" onclick="selectTicket('late')">
+            <div class="ticket-radio" id="radioLate"></div>
+            <span class="late-badge">LATE NIGHT</span>
+            <span class="ticket-card-name">Late</span>
+            <span class="ticket-card-price">&euro;19,90</span>
+            <div class="ticket-card-includes">
+              <span class="yes">&#10003; Pool Access</span>
+              <span class="yes">&#10003; Open Bar</span>
+              <span class="no">&#10007; Food</span>
+              <span class="yes">&#10003; DJ Set</span>
+              <span class="yes" style="color:rgba(192,132,252,0.9);">&#10003; Dalle 22:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUANTITY -->
       <div class="qty-wrap">
         <span class="qty-label">Numero biglietti</span>
         <div class="qty-control" role="group">
@@ -167,6 +233,7 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
         </div>
       </div>
 
+      <!-- PRIMARY PARTICIPANT -->
       <div class="participant-section primary">
         <div class="participant-label">Biglietto 1 &mdash; Intestatario pagamento</div>
         <div class="field-row">
@@ -190,23 +257,26 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 
       <div id="extraParticipants"></div>
 
+      <!-- REFERRAL -->
       <div class="field" id="field-referral" style="margin-top:2px;">
         <label for="referral" style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);">Da chi o dove hai ricevuto l&#39;invito? <span style="color:rgba(255,107,26,0.8);">*</span></label>
         <input type="text" id="referral" placeholder="Es. Mario Rossi, Gruppo WhatsApp Spiaggia..." autocomplete="off" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:10px 12px;font-size:15px;color:#fff;width:100%;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition);">
         <span id="referral-error" style="font-size:11px;color:var(--error);display:none;margin-top:2px;">Obbligatorio</span>
       </div>
 
-      <div class="promo-wrap">
-        <span class="qty-label">Hai un codice promozionale? <span style="color:rgba(255,255,255,0.28);font-weight:400;text-transform:none;letter-spacing:0;">(opzionale — sconto €5)</span></span>
+      <!-- PROMO CODE -->
+      <div class="promo-wrap" id="promoWrap">
+        <span class="qty-label">Hai un codice promozionale? <span style="color:rgba(255,255,255,0.28);font-weight:400;text-transform:none;letter-spacing:0;">(opzionale — sconto €5, solo Full)</span></span>
         <div class="promo-row">
           <input type="text" id="promoCode" placeholder="Es. WAVE3YAO" maxlength="12" autocomplete="off" autocorrect="off" spellcheck="false">
           <button type="button" class="btn-promo" id="btnPromo">Applica</button>
         </div>
         <div class="promo-feedback" id="promoFeedback"></div>
+        <div class="late-promo-note" id="latePromoNote">⚠️ Il codice promozionale non è applicabile al biglietto Late.</div>
       </div>
 
       <div class="sep"></div>
-      <div class="total-box">
+      <div class="total-box" id="totalBox">
         <span class="total-label">Totale da pagare</span>
         <span class="total-amount" id="totalAmount">32,00 &euro;</span>
       </div>
@@ -219,7 +289,7 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
       <div class="paypal-alert">
         <strong>Attenzione pagamento PayPal</strong>
         <span>Se si apre l'app PayPal e l'importo non viene mostrato, inserisci tu manualmente il totale indicato sopra.</span>
-        <span>Esempio: 2 biglietti = 64,00 &euro; &mdash; 5 biglietti = 128,00 &euro; (1 omaggio).</span>
+        <span id="paypalExampleText">Esempio: 2 biglietti = 64,00 &euro; &mdash; 5 biglietti = 128,00 &euro; (1 omaggio).</span>
       </div>
 
       <p class="form-note">
@@ -232,70 +302,104 @@ body{min-height:100dvh;font-family:var(--font-body);color:#fff;background:#08081
 <footer class="site-footer">&copy; 2025 W-VE&#x222B;c &mdash; All rights reserved</footer>
 
 <script>
-const PRICE      = 32;
-const PAYPAL_ME  = 'zayfrog';
-const MAX_QTY    = 10;
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
+const PRICE_FULL  = 32;
+const PRICE_LATE  = 19.90;
+const PAYPAL_ME   = 'zayfrog';
+const MAX_QTY     = 10;
+const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwgiMqWEe5oNDoNriB5S9q5_y6dNSGNRdbnRxoMVdEsM80JAKH-03EyJzTk02Zag22X/exec';
+const PROMO_DISCOUNT = 5;
 
-let qty = 1;
+let qty          = 1;
+let ticketType   = 'full'; // 'full' | 'late'
+let promoApplied = false;
+
 const qtyDisplay     = document.getElementById('qtyDisplay');
 const totalAmount    = document.getElementById('totalAmount');
+const totalBox       = document.getElementById('totalBox');
 const qtyMinus       = document.getElementById('qtyMinus');
 const qtyPlus        = document.getElementById('qtyPlus');
 const extraContainer = document.getElementById('extraParticipants');
 const submitBtn      = document.getElementById('submitBtn');
 const submitStatus   = document.getElementById('submitStatus');
+const promoWrap      = document.getElementById('promoWrap');
+const latePromoNote  = document.getElementById('latePromoNote');
 
 function fmt(n){ return n.toLocaleString('it-IT',{minimumFractionDigits:2})+' \u20ac'; }
 
+// ── Ticket type selection ──
+function selectTicket(type){
+  ticketType = type;
+  const cardFull = document.getElementById('cardFull');
+  const cardLate = document.getElementById('cardLate');
+  cardFull.className = 'ticket-card' + (type==='full' ? ' selected-full' : '');
+  cardLate.className = 'ticket-card' + (type==='late' ? ' selected-late' : '');
 
-const PROMO_DISCOUNT = 5;
-let promoApplied = false;
+  // Promo: disable for late
+  if(type === 'late'){
+    promoWrap.classList.add('disabled-promo');
+    latePromoNote.classList.add('visible');
+    // Reset promo if was applied
+    if(promoApplied){
+      promoApplied = false;
+      const input = document.getElementById('promoCode');
+      input.classList.remove('promo-valid','promo-invalid');
+      input.readOnly = false;
+      const btn = document.getElementById('btnPromo');
+      btn.disabled = false; btn.style.opacity=''; btn.textContent='Applica';
+      document.getElementById('promoFeedback').className='promo-feedback';
+      document.getElementById('promoFeedback').textContent='';
+    }
+  } else {
+    promoWrap.classList.remove('disabled-promo');
+    latePromoNote.classList.remove('visible');
+  }
 
+  // Style total box & button
+  document.getElementById('heroTime').innerHTML = type==='late' ? '⏲ Start 22:00 · Until late' : '⏲ Start 18:00 · Until late';
+  totalBox.className   = 'total-box'   + (type==='late' ? ' late-mode' : '');
+  totalAmount.className= 'total-amount'+ (type==='late' ? ' late-mode' : '');
+  submitBtn.className  = 'btn-paypal'  + (type==='late' ? ' late-mode' : '');
+
+  // Late: group offer not applicable
+  document.getElementById('paypalExampleText').textContent = type==='full'
+    ? 'Esempio: 2 biglietti = 64,00 \u20ac \u2014 5 biglietti = 128,00 \u20ac (1 omaggio).'
+    : 'Esempio: 2 biglietti = 39,80 \u20ac \u2014 3 biglietti = 59,70 \u20ac.';
+
+  updateUI();
+}
+
+// ── Promo ──
 function applyPromo(){
+  if(ticketType === 'late') return;
   const input = document.getElementById('promoCode');
   const fb    = document.getElementById('promoFeedback');
   const btn   = document.getElementById('btnPromo');
   const code  = input.value.trim().toUpperCase();
   if(!code){ fb.className='promo-feedback ko'; fb.textContent='Inserisci un codice.'; return; }
-
-  btn.disabled = true;
-  btn.textContent = '...';
-  fb.className = 'promo-feedback';
-  fb.textContent = '⏳ Verifica in corso...';
-
+  btn.disabled = true; btn.textContent = '...';
+  fb.className = 'promo-feedback'; fb.textContent = '⏳ Verifica in corso...';
   fetch(SCRIPT_URL + '?action=checkPromo&code=' + encodeURIComponent(code))
     .then(r => r.json())
     .then(res => {
       if(res.valid){
         promoApplied = true;
-        input.classList.remove('promo-invalid');
-        input.classList.add('promo-valid');
+        input.classList.remove('promo-invalid'); input.classList.add('promo-valid');
         input.readOnly = true;
-        btn.disabled = true;
-        btn.style.opacity = '.4';
-        btn.textContent = 'Applicato';
-        fb.className = 'promo-feedback ok';
-        fb.textContent = '✅ Codice valido! Sconto di €5 applicato.';
+        btn.disabled = true; btn.style.opacity='.4'; btn.textContent='Applicato';
+        fb.className='promo-feedback ok'; fb.textContent='✅ Codice valido! Sconto di €5 applicato.';
         updateUI();
       } else {
         promoApplied = false;
-        input.classList.remove('promo-valid');
-        input.classList.add('promo-invalid');
-        btn.disabled = false;
-        btn.textContent = 'Applica';
-        fb.className = 'promo-feedback ko';
-        fb.textContent = res.reason === 'used'
-          ? '❌ Codice già utilizzato.'
-          : '❌ Codice non valido.';
+        input.classList.remove('promo-valid'); input.classList.add('promo-invalid');
+        btn.disabled = false; btn.textContent='Applica';
+        fb.className='promo-feedback ko';
+        fb.textContent = res.reason==='used' ? '❌ Codice già utilizzato.' : '❌ Codice non valido.';
         updateUI();
       }
     })
     .catch(()=>{
-      btn.disabled = false;
-      btn.textContent = 'Applica';
-      fb.className = 'promo-feedback ko';
-      fb.textContent = '❌ Errore di rete. Riprova.';
+      btn.disabled=false; btn.textContent='Applica';
+      fb.className='promo-feedback ko'; fb.textContent='❌ Errore di rete. Riprova.';
     });
 }
 
@@ -304,19 +408,26 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('promoCode').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); applyPromo(); } });
 });
 
+// ── Totale ──
 function calcTotal(q){
+  if(ticketType === 'late'){
+    return +(q * PRICE_LATE).toFixed(2);
+  }
+  // Full: gruppo da 5 = 4 paganti
   const groups    = Math.floor(q / 5);
   const remainder = q % 5;
-  const base = (groups * 4 + remainder) * PRICE;
+  const base = (groups * 4 + remainder) * PRICE_FULL;
   return promoApplied ? Math.max(0, base - PROMO_DISCOUNT) : base;
 }
 
 function promoNote(q){
+  if(ticketType === 'late') return '';
   if(q < 5) return '';
   const free = Math.floor(q / 5);
   return '\uD83C\uDF89 ' + free + ' bigliett' + (free > 1 ? 'i' : 'o') + ' omaggio inclus' + (free > 1 ? 'i' : 'o') + '!';
 }
 
+// ── Participant blocks ──
 function buildExtra(n){
   const div = document.createElement('div');
   div.className = 'participant-section participant-extra';
@@ -353,7 +464,6 @@ function updateUI(){
   qtyDisplay.textContent = qty;
   const total = calcTotal(qty);
   totalAmount.textContent = fmt(total);
-  // Show/hide promo note
   let promoEl = document.getElementById('promoNote');
   const promoMsg = promoNote(qty);
   if(!promoEl){
@@ -368,7 +478,8 @@ function updateUI(){
   setTimeout(()=>{ totalAmount.style.transform='scale(1)'; }, 160);
   qtyMinus.disabled = qty <= 1;
   qtyPlus.disabled  = qty >= MAX_QTY;
-  const paypalNote = encodeURIComponent('SPP \u2013 ' + qty + ' bigliett' + (qty > 1 ? 'i' : 'o') + ' \u2013 \u20ac' + total);
+  const typeLabel = ticketType==='late' ? 'Late' : 'Full';
+  const paypalNote = encodeURIComponent('SPP \u2013 ' + qty + ' bigl. ' + typeLabel + ' \u2013 \u20ac' + total);
   submitBtn.href = 'https://www.paypal.me/' + PAYPAL_ME + '/' + total + 'EUR?cn=' + paypalNote;
   updateParticipants();
 }
@@ -376,6 +487,7 @@ function updateUI(){
 qtyMinus.addEventListener('click', ()=>{ if(qty>1){ qty--; updateUI(); }});
 qtyPlus.addEventListener('click',  ()=>{ if(qty<MAX_QTY){ qty++; updateUI(); }});
 
+// ── Validation ──
 function chkField(id, fn){
   const w=document.getElementById('field-'+id), i=document.getElementById(id);
   if(!w||!i) return true;
@@ -398,13 +510,15 @@ function validateAll(){
     ok = chkField('nome-'+n, v=>v.length>=2) & ok;
     ok = chkField('cognome-'+n, v=>v.length>=2) & ok;
   }
-  // Block if promo code typed but invalid
-  const promoInput = document.getElementById('promoCode').value.trim();
-  if(promoInput && !promoApplied){
-    document.getElementById('promoFeedback').className='promo-feedback ko';
-    document.getElementById('promoFeedback').textContent='❌ Codice non valido. Rimuovilo o correggilo.';
-    document.getElementById('promoCode').classList.add('promo-invalid');
-    ok = false;
+  // Block if promo typed but not applied (only for full)
+  if(ticketType === 'full'){
+    const promoInput = document.getElementById('promoCode').value.trim();
+    if(promoInput && !promoApplied){
+      document.getElementById('promoFeedback').className='promo-feedback ko';
+      document.getElementById('promoFeedback').textContent='❌ Codice non valido. Rimuovilo o correggilo.';
+      document.getElementById('promoCode').classList.add('promo-invalid');
+      ok = false;
+    }
   }
   const refEl = document.getElementById('referral');
   const refOk = refEl.value.trim().length >= 2;
@@ -414,6 +528,7 @@ function validateAll(){
   return !!ok;
 }
 
+// ── Collect & Submit ──
 function collectData(){
   const participants = [];
   participants.push({
@@ -430,9 +545,10 @@ function collectData(){
     timestamp: new Date().toISOString(),
     email: document.getElementById('email').value.trim(),
     biglietti: qty,
+    tipoAccesso: ticketType, // 'full' | 'late'
     totale: calcTotal(qty),
     referral: document.getElementById('referral').value.trim(),
-    promoCode: promoApplied ? document.getElementById('promoCode').value.trim().toUpperCase() : '',
+    promoCode: (ticketType==='full' && promoApplied) ? document.getElementById('promoCode').value.trim().toUpperCase() : '',
     participants
   };
 }
@@ -443,20 +559,16 @@ function setStatus(type, msg){
 }
 
 submitBtn.addEventListener('click', function(e){
-  if(!validateAll()){
-    e.preventDefault();
-    return;
-  }
+  if(!validateAll()){ e.preventDefault(); return; }
   this.target = '_blank';
   this.rel    = 'noopener noreferrer';
   this.setAttribute('aria-disabled', 'true');
   setStatus('sending', '\u23f3 Registrazione in corso...');
   const data = collectData();
   fetch(SCRIPT_URL, {
-    method:  'POST',
-    mode:    'no-cors',
+    method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(data)
+    body: JSON.stringify(data)
   }).then(()=>{
     setStatus('success', '\u2705 <strong>Registrazione completata!</strong><br>Controlla la tua email \u2014 riceverai una conferma a breve.');
   }).catch(()=>{
